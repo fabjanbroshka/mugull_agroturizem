@@ -1,0 +1,157 @@
+---
+import { footer, site, nav } from '../data/content';
+---
+
+<footer class="footer" aria-label="Site footer">
+  <div class="container footer-grid">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+      <img src="/logo.png" alt={site.name} class="footer-logo" />
+      <p class="footer-tagline">{site.tagline}</p>
+      <div class="social-links">
+        <a href={site.social.instagram} class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a href={site.social.facebook} class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Nav links -->
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <h3 class="footer-heading">Navigate</h3>
+      <ul>
+        {nav.links.map(link => (
+          <li><a href={link.href} class="footer-link">{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Info -->
+    <div class="footer-info">
+      <h3 class="footer-heading">Visit us</h3>
+      <ul class="info-list">
+        <li>🕐 {footer.hours}</li>
+        <li>📍 {footer.address}</li>
+        <li>
+          📞 <a href={`tel:${footer.phone.replace(/\s/g,'')}`} class="footer-link">{footer.phone}</a>
+        </li>
+        <li>
+          ✉️ <a href={`mailto:${footer.email}`} class="footer-link">{footer.email}</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom container">
+    <p class="copyright">{footer.copyright}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--brand-darker);
+    color: rgba(255,255,255,0.75);
+    padding-top: var(--space-xl);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+
+  /* Brand */
+  .footer-logo {
+    height: 52px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer-tagline {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+    margin-bottom: var(--space-sm);
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .social-link {
+    color: rgba(255,255,255,0.55);
+    transition: color var(--transition);
+  }
+  .social-link:hover { color: #fff; }
+
+  /* Nav & info */
+  .footer-heading {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer-nav ul,
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-link {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    transition: color var(--transition);
+  }
+  .footer-link:hover { color: #fff; }
+
+  .info-list li {
+    font-size: 14px;
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  /* Bottom bar */
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-block: var(--space-sm);
+  }
+
+  .copyright {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer-brand { grid-column: span 2; }
+  }
+
+  @media (max-width: 560px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    .footer-brand { grid-column: span 1; }
+    .footer { padding-top: var(--space-lg); }
+  }
+</style>

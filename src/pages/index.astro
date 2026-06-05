@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/content';
+
+import Hero          from '../components/Hero.astro';
+import Story         from '../components/Story.astro';
+import Offerings     from '../components/Offerings.astro';
+import Specialties   from '../components/Specialties.astro';
+import Gallery       from '../components/Gallery.astro';
+import Testimonials  from '../components/Testimonials.astro';
+import Events        from '../components/Events.astro';
+import Location      from '../components/Location.astro';
+import ReservationCTA from '../components/ReservationCTA.astro';
+---
+
+<Layout
+  title={`${site.name} — From farm to table`}
+  description="Mugull Agroturizem is a family-run farm restaurant in the Albanian highlands. Traditional Albanian and Italian dishes made from ingredients grown on site."
+  heroPage={true}
+>
+  <Hero />
+  <Story />
+  <Offerings />
+  <Specialties />
+  <Gallery />
+  <Testimonials />
+  <Events />
+  <Location />
+  <ReservationCTA />
+</Layout>

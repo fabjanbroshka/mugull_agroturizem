@@ -1,0 +1,146 @@
+---
+const dishes = [
+	{
+		category: 'Starters',
+		items: [
+			{ name: 'Tavë Dheu', desc: 'Baked lamb with yoghurt, eggs and butter — a highland classic.' },
+			{ name: 'Bruschetta e Gjelbër', desc: 'Toasted sourdough with fresh herbs, ricotta and mountain honey.' },
+			{ name: 'Lakror Fshati', desc: 'Flaky village pie filled with wild greens, feta and eggs.' },
+		],
+	},
+	{
+		category: 'Main Courses',
+		items: [
+			{ name: 'Qengji në Zgare', desc: 'Slow-grilled lamb chops with roasted vegetables and fresh herbs.' },
+			{ name: 'Pasta e Bjeshkës', desc: 'Hand-rolled pasta with wild mushrooms, sage butter and aged pecorino.' },
+			{ name: 'Trofta e Lumit', desc: 'River trout pan-fried in olive oil, garlic and lemon from our orchard.' },
+		],
+	},
+	{
+		category: 'Desserts',
+		items: [
+			{ name: 'Baklava Mjalti', desc: 'Layers of crisp pastry with crushed walnuts and raw wildflower honey.' },
+			{ name: 'Panna Cotta Luleshtrydhe', desc: 'Silky vanilla cream with a compote of garden strawberries.' },
+			{ name: 'Trilece Shtepiake', desc: 'Three-milk cake soaked to perfection, served chilled with cream.' },
+		],
+	},
+];
+---
+
+<section class="menu" id="menu">
+	<div class="menu-header">
+		<span class="label">Taste the Highlands</span>
+		<h2>Our Menu</h2>
+		<p>Rooted in Albanian tradition, kissed by Italian refinement. Every ingredient is grown or sourced locally.</p>
+	</div>
+
+	<div class="menu-grid">
+		{dishes.map((section) => (
+			<div class="menu-category">
+				<h3>{section.category}</h3>
+				<ul>
+					{section.items.map((item) => (
+						<li>
+							<span class="dish-name">{item.name}</span>
+							<span class="dish-desc">{item.desc}</span>
+						</li>
+					))}
+				</ul>
+			</div>
+		))}
+	</div>
+</section>
+
+<style>
+	.menu {
+		background: #778873;
+		padding: 100px 60px;
+	}
+
+	.menu-header {
+		text-align: center;
+		max-width: 600px;
+		margin: 0 auto 72px;
+	}
+
+	.label {
+		font-family: Poppins, sans-serif;
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: #D2DCB6;
+		display: block;
+		margin-bottom: 16px;
+	}
+
+	h2 {
+		font-family: Poppins, sans-serif;
+		font-size: 40px;
+		font-weight: 300;
+		color: #F1F3E0;
+		margin-bottom: 16px;
+	}
+
+	.menu-header p {
+		font-family: Poppins, sans-serif;
+		font-size: 15px;
+		color: #D2DCB6;
+		line-height: 1.7;
+	}
+
+	.menu-grid {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 48px;
+	}
+
+	h3 {
+		font-family: Poppins, sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: #A1BC98;
+		margin-bottom: 28px;
+		padding-bottom: 12px;
+		border-bottom: 1px solid rgba(241, 243, 224, 0.2);
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+	}
+
+	li {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	.dish-name {
+		font-family: Poppins, sans-serif;
+		font-size: 17px;
+		font-weight: 400;
+		color: #F1F3E0;
+	}
+
+	.dish-desc {
+		font-family: Poppins, sans-serif;
+		font-size: 13px;
+		color: #D2DCB6;
+		line-height: 1.6;
+	}
+
+	@media (max-width: 900px) {
+		.menu-grid { grid-template-columns: 1fr; gap: 40px; }
+		.menu { padding: 60px 24px; }
+		h2 { font-size: 28px; }
+	}
+</style>

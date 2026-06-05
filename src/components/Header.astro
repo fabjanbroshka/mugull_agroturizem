@@ -1,0 +1,252 @@
+---
+import { nav, site } from '../data/content';
+interface Props { alwaysScrolled?: boolean; }
+const { alwaysScrolled = false } = Astro.props;
+---
+
+<header class={`header${alwaysScrolled ? ' scrolled' : ''}`} id="site-header" data-always-scrolled={alwaysScrolled}>
+  <div class="header-inner container">
+
+    <!-- Logo -->
+    <a href="/" class="logo" aria-label={site.name}>
+      <img src="/logo.png" alt={site.name} class="logo-img" />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        {nav.links.map(link => (
+          <li><a href={link.href} class="nav-link">{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Reserve CTA + hamburger -->
+    <div class="header-actions">
+      <a href="/#book" class="btn btn-primary reserve-btn">{nav.cta}</a>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-nav-list">
+      {nav.links.map(link => (
+        <li><a href={link.href} class="mobile-nav-link">{link.label}</a></li>
+      ))}
+      <li><a href="/#book" class="btn btn-primary mobile-reserve">{nav.cta}</a></li>
+    </ul>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+    padding-block: 20px;
+  }
+
+  /* Scrolled state added by JS */
+  .header.scrolled {
+    background: var(--color-bg);
+    box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+    padding-block: 12px;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  /* Logo */
+  .logo { flex-shrink: 0; }
+  .logo-img {
+    height: 52px;
+    width: auto;
+    /* invert when transparent so logo shows on dark hero */
+    filter: brightness(0) invert(1);
+    transition: filter var(--transition);
+  }
+  .header.scrolled .logo-img {
+    filter: none;
+  }
+
+  /* Desktop nav */
+  .nav { flex: 1; }
+  .nav-list {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+
+  .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.02em;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color var(--transition);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transition: width var(--transition);
+  }
+
+  .nav-link:hover { color: #fff; }
+  .nav-link:hover::after { width: 100%; }
+
+  .header.scrolled .nav-link {
+    color: var(--color-text-muted);
+  }
+  .header.scrolled .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  /* Actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-left: auto;
+  }
+
+  .reserve-btn {
+    font-size: 13px;
+    padding: 10px 24px;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: background var(--transition), transform var(--transition), opacity var(--transition);
+  }
+
+  .header.scrolled .hamburger span {
+    background: var(--color-text);
+  }
+
+  .hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.35s ease;
+    padding: 0 var(--space-sm);
+  }
+
+  .mobile-menu.open {
+    max-height: 480px;
+    opacity: 1;
+    padding: var(--space-sm) var(--space-sm) var(--space-md);
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 12px 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-reserve {
+    display: inline-flex;
+    margin-top: var(--space-sm);
+  }
+
+  /* ── Responsive ───────────────────── */
+  @media (max-width: 768px) {
+    .nav        { display: none; }
+    .hamburger  { display: flex; }
+    .reserve-btn { display: none; }
+  }
+</style>
+
+<script>
+  const header    = document.getElementById('site-header') as HTMLElement;
+  const hamburger = document.getElementById('hamburger')   as HTMLButtonElement;
+  const mobileMenu = document.getElementById('mobile-menu') as HTMLElement;
+
+  // Scroll — transparent → solid
+  const SCROLL_THRESHOLD = 80;
+  const alwaysScrolled = header.dataset.alwaysScrolled === 'true';
+  function onScroll() {
+    if (alwaysScrolled) { header.classList.add('scrolled'); return; }
+    header.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Hamburger toggle
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', String(!open));
+    mobileMenu.setAttribute('aria-hidden', String(open));
+    mobileMenu.classList.toggle('open', !open);
+  });
+
+  // Close mobile menu when a link is clicked
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      mobileMenu.classList.remove('open');
+    });
+  });
+</script>

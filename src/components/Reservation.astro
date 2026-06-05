@@ -1,0 +1,194 @@
+---
+---
+
+<section class="reservation" id="book">
+	<div class="reservation-inner">
+		<div class="reservation-text">
+			<span class="label">Reserve a Table</span>
+			<h2>Join us for a meal</h2>
+			<p>Whether it's a quiet dinner for two or a family celebration, we'll make it unforgettable. Fill in the form and we'll confirm your booking within 24 hours.</p>
+			<ul class="info">
+				<li><strong>Hours:</strong> Mon–Sun, 12:00 – 22:00</li>
+				<li><strong>Phone:</strong> +355 69 000 0000</li>
+				<li><strong>Email:</strong> hello@mugull.al</li>
+			</ul>
+		</div>
+
+		<form class="form">
+			<div class="row">
+				<div class="field">
+					<label>First Name</label>
+					<input type="text" placeholder="Ardit" />
+				</div>
+				<div class="field">
+					<label>Last Name</label>
+					<input type="text" placeholder="Hoxha" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="field">
+					<label>Date</label>
+					<input type="date" />
+				</div>
+				<div class="field">
+					<label>Time</label>
+					<input type="time" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="field">
+					<label>Guests</label>
+					<input type="number" min="1" max="20" placeholder="2" />
+				</div>
+				<div class="field">
+					<label>Phone</label>
+					<input type="tel" placeholder="+355 69 000 0000" />
+				</div>
+			</div>
+			<div class="field">
+				<label>Special requests</label>
+				<textarea rows="3" placeholder="Allergies, celebrations, seating preferences..."></textarea>
+			</div>
+			<button type="submit" class="btn">Confirm Reservation</button>
+		</form>
+	</div>
+</section>
+
+<style>
+	.reservation {
+		background: #A1BC98;
+		padding: 100px 60px;
+	}
+
+	.reservation-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1.4fr;
+		gap: 80px;
+		align-items: start;
+	}
+
+	.label {
+		font-family: Poppins, sans-serif;
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: #F1F3E0;
+		display: block;
+		margin-bottom: 16px;
+	}
+
+	h2 {
+		font-family: Poppins, sans-serif;
+		font-size: 40px;
+		font-weight: 300;
+		color: #F1F3E0;
+		margin-bottom: 20px;
+	}
+
+	p {
+		font-family: Poppins, sans-serif;
+		font-size: 15px;
+		color: #F1F3E0;
+		line-height: 1.8;
+		margin-bottom: 32px;
+	}
+
+	.info {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.info li {
+		font-family: Poppins, sans-serif;
+		font-size: 14px;
+		color: #F1F3E0;
+	}
+
+	.info strong {
+		font-weight: 600;
+	}
+
+	.form {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+	}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	label {
+		font-family: Poppins, sans-serif;
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #F1F3E0;
+	}
+
+	input, textarea {
+		font-family: Poppins, sans-serif;
+		font-size: 14px;
+		padding: 12px 16px;
+		background: rgba(255,255,255,0.25);
+		border: 1px solid rgba(255,255,255,0.4);
+		color: #F1F3E0;
+		outline: none;
+		transition: border 0.2s;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	input::placeholder, textarea::placeholder {
+		color: rgba(241, 243, 224, 0.55);
+	}
+
+	input:focus, textarea:focus {
+		border-color: #F1F3E0;
+	}
+
+	textarea { resize: none; }
+
+	.btn {
+		align-self: flex-start;
+		padding: 14px 40px;
+		background: #F1F3E0;
+		border: none;
+		color: #778873;
+		font-family: Poppins, sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		border-radius: 999px;
+		cursor: pointer;
+		transition: background 0.3s, color 0.3s;
+	}
+
+	.btn:hover {
+		background: #778873;
+		color: #F1F3E0;
+	}
+
+	@media (max-width: 900px) {
+		.reservation-inner { grid-template-columns: 1fr; gap: 48px; }
+		.reservation { padding: 60px 24px; }
+		h2 { font-size: 28px; }
+		.row { grid-template-columns: 1fr; }
+	}
+</style>

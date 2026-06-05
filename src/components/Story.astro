@@ -1,0 +1,76 @@
+---
+import { story } from '../data/content';
+---
+
+<section class="story" id="about" aria-labelledby="story-heading">
+  <div class="container story-inner">
+
+    <div class="story-image" data-reveal="left">
+      <img
+        src={story.image.src}
+        alt={story.image.alt}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <div class="story-text" data-reveal="right">
+      <span class="section-label">{story.label}</span>
+      <h2 class="section-title" id="story-heading">{story.headline}</h2>
+      {story.body.map(para => <p class="section-body">{para}</p>)}
+      <a href={story.cta.href} class="btn btn-outline-green">{story.cta.label}</a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .story {
+    background: var(--brand-cream);
+    padding-block: var(--space-xl);
+  }
+
+  .story-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+
+  .story-image img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  .story-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .story-text .btn {
+    align-self: flex-start;
+    margin-top: var(--space-xs);
+  }
+
+  @media (max-width: 1024px) {
+    .story-inner { gap: var(--space-lg); }
+    .story-image img { height: 420px; }
+  }
+
+  @media (max-width: 900px) {
+    .story-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    .story-image img { height: 300px; }
+    .story { padding-block: var(--space-lg); }
+  }
+
+  @media (max-width: 480px) {
+    .story-image img { height: 240px; }
+    .story-text .btn { align-self: stretch; text-align: center; }
+  }
+</style>

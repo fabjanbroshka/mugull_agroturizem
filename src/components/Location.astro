@@ -1,0 +1,126 @@
+---
+import { location, site } from '../data/content';
+---
+
+<section class="location" id="contact" aria-labelledby="location-heading">
+  <div class="container location-inner">
+
+    <div class="location-info" data-reveal="left">
+      <span class="section-label">{location.label}</span>
+      <h2 class="section-title" id="location-heading">{location.headline}</h2>
+
+      <ul class="info-list">
+        <li>
+          <span class="info-icon" aria-hidden="true">📍</span>
+          <span>{location.address}</span>
+        </li>
+        <li>
+          <span class="info-icon" aria-hidden="true">🚗</span>
+          <span>{location.distance}</span>
+        </li>
+        <li>
+          <span class="info-icon" aria-hidden="true">📞</span>
+          <a href={location.phoneHref} class="info-link">{location.phone}</a>
+        </li>
+        <li>
+          <span class="info-icon" aria-hidden="true">✉️</span>
+          <a href={`mailto:${location.email}`} class="info-link">{location.email}</a>
+        </li>
+      </ul>
+
+      <p class="directions">{location.directions}</p>
+    </div>
+
+    <div class="map-wrapper" data-reveal="right">
+      <iframe
+        src={site.mapsEmbed}
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen={true}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mugull Agroturizem on Google Maps"
+      ></iframe>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .location {
+    background: var(--brand-cream);
+    padding-block: var(--space-xl);
+  }
+
+  .location-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 72px;
+    align-items: center;
+  }
+
+  .location-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .info-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--color-text);
+  }
+
+  .info-icon { flex-shrink: 0; font-size: 18px; }
+
+  .info-link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--transition);
+  }
+
+  .info-link:hover { color: var(--color-primary-dark); }
+
+  .directions {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    padding-top: var(--space-xs);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .map-wrapper {
+    height: 420px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  }
+
+  @media (max-width: 1024px) {
+    .location-inner { gap: var(--space-lg); }
+  }
+
+  @media (max-width: 900px) {
+    .location-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    .map-wrapper { height: 320px; }
+    .location { padding-block: var(--space-lg); }
+  }
+
+  @media (max-width: 480px) {
+    .map-wrapper { height: 260px; }
+  }
+</style>

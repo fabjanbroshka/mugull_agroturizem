@@ -1,0 +1,114 @@
+---
+const cards = [
+	{
+		icon: '🌿',
+		title: 'Farm to Table',
+		desc: 'Every ingredient on your plate is grown on our land or sourced from trusted local farmers in the Albanian highlands.',
+	},
+	{
+		icon: '🍷',
+		title: 'Local Wines',
+		desc: 'Pair your meal with handcrafted Albanian wines and raki — poured straight from our cellar.',
+	},
+	{
+		icon: '🏔️',
+		title: 'Mountain Setting',
+		desc: 'Dine surrounded by breathtaking views of the Accursed Mountains. A setting that inspires every bite.',
+	},
+	{
+		icon: '👨‍🍳',
+		title: 'Family Recipes',
+		desc: 'Our kitchen is run by three generations. The recipes have never left the family — until now.',
+	},
+];
+---
+
+<section class="experience">
+	<div class="experience-header">
+		<span class="label">Why Visit Us</span>
+		<h2>The Mugull Experience</h2>
+	</div>
+	<div class="cards">
+		{cards.map((card) => (
+			<div class="card">
+				<span class="icon">{card.icon}</span>
+				<h3>{card.title}</h3>
+				<p>{card.desc}</p>
+			</div>
+		))}
+	</div>
+</section>
+
+<style>
+	.experience {
+		background: #D2DCB6;
+		padding: 100px 60px;
+	}
+
+	.experience-header {
+		text-align: center;
+		margin-bottom: 64px;
+	}
+
+	.label {
+		font-family: Poppins, sans-serif;
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: #778873;
+		display: block;
+		margin-bottom: 16px;
+	}
+
+	h2 {
+		font-family: Poppins, sans-serif;
+		font-size: 40px;
+		font-weight: 300;
+		color: #3a3a2e;
+	}
+
+	.cards {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 32px;
+	}
+
+	.card {
+		background: #F1F3E0;
+		padding: 40px 28px;
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	.icon {
+		font-size: 32px;
+	}
+
+	h3 {
+		font-family: Poppins, sans-serif;
+		font-size: 17px;
+		font-weight: 500;
+		color: #3a3a2e;
+	}
+
+	p {
+		font-family: Poppins, sans-serif;
+		font-size: 14px;
+		color: #666;
+		line-height: 1.7;
+	}
+
+	@media (max-width: 900px) {
+		.cards { grid-template-columns: repeat(2, 1fr); }
+		.experience { padding: 60px 24px; }
+		h2 { font-size: 28px; }
+	}
+
+	@media (max-width: 480px) {
+		.cards { grid-template-columns: 1fr; }
+	}
+</style>

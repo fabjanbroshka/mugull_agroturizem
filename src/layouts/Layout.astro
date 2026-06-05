@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+import { site } from '../data/content';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  heroPage?: boolean;
+}
+
+const {
+  title = site.name,
+  description = 'Mugull Agroturizem — family-run farm restaurant in the Albanian highlands. Traditional Albanian and Italian dishes made from ingredients grown on site.',
+  heroPage = false,
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <Header alwaysScrolled={!heroPage} />
+    <main class={heroPage ? undefined : 'page-main'}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .page-main {
+    padding-top: 80px;
+  }
+</style>
+
+<script>
+  // Scroll-reveal via IntersectionObserver
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+  document.querySelectorAll('[data-reveal], [data-stagger]').forEach(el => observer.observe(el));
+</script>

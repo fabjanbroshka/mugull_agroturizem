@@ -1,0 +1,107 @@
+---
+import { specialties } from '../data/content';
+---
+
+<section class="specialties" id="menu" aria-labelledby="specialties-heading">
+  <div class="container">
+    <div class="specialties-header" data-reveal>
+      <span class="section-label">{specialties.label}</span>
+      <h2 class="section-title" id="specialties-heading">{specialties.headline}</h2>
+    </div>
+
+    <ul class="specialties-list">
+      {specialties.items.map((dish, i) => (
+        <li class={`specialty-row ${i % 2 === 1 ? 'reverse' : ''}`}>
+          <div class="specialty-image" data-reveal={i % 2 === 0 ? 'left' : 'right'}>
+            <img
+              src={dish.image.src}
+              alt={dish.image.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="specialty-text" data-reveal={i % 2 === 0 ? 'right' : 'left'}>
+            <h3 class="dish-name">{dish.name}</h3>
+            <p class="dish-desc">{dish.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .specialties {
+    background: var(--brand-cream);
+    padding-block: var(--space-xl);
+  }
+
+  .specialties-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .specialties-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .specialty-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .specialty-row.reverse {
+    direction: rtl;
+  }
+  .specialty-row.reverse > * {
+    direction: ltr;
+  }
+
+  .specialty-image img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  .specialty-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .dish-name {
+    font-family: var(--font-serif);
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .dish-desc {
+    font-size: 16px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    max-width: 440px;
+  }
+
+  @media (max-width: 1024px) {
+    .specialty-row { gap: var(--space-md); }
+    .specialty-image img { height: 300px; }
+  }
+
+  @media (max-width: 768px) {
+    .specialties { padding-block: var(--space-lg); }
+    .specialty-row,
+    .specialty-row.reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+      gap: var(--space-sm);
+    }
+    .specialty-image img { height: 240px; }
+    .dish-desc { max-width: 100%; }
+  }
+</style>

@@ -1,0 +1,170 @@
+---
+const images = [
+	{ src: '/image1D.jpg', alt: 'Slide 1' },
+	{ src: '/image3D.jpg', alt: 'Slide 2' },
+	{ src: '/image4D.jpg', alt: 'Slide 3' },
+	{ src: '/Image5D.jpg', alt: 'Slide 4' },
+	{ src: '/Image6D.jpg', alt: 'Slide 5' },
+
+];
+---
+
+<section class="hero">
+	<div class="carousel-wrapper">
+		<div class="carousel-overlay">
+			<h1 class="carousel-title">Welcome to Mugull Agroturizem</h1>
+			<p class="carousel-subtitle">Where culinary heritage meets refinement.</p>
+			<div class="btn-group">
+				<a href="#book" class="btn-book">Book a table</a>
+				<a href="#menu" class="btn-book btn-outline">Explore our menu</a>
+			</div>
+		</div>
+		<div class="slides-track" id="desktopSlidesTrack">
+			{images.map((img) => (
+				<div class="slide"><img src={img.src} alt={img.alt} /></div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	* { box-sizing: border-box; margin: 0; padding: 0; }
+
+	.hero {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 100vh;
+		background: #D2DCB6;
+	}
+
+	.carousel-wrapper {
+		position: relative;
+		flex: 1;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.slides-track {
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+
+	.slide {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		transition: opacity 2s ease-in-out;
+		background: #A1BC98;
+	}
+
+	.slide.active {
+		opacity: 1;
+	}
+
+	.slide::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.45);
+	}
+
+	.slide img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.carousel-overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		gap: 16px;
+		pointer-events: none;
+	}
+
+.carousel-title {
+		color: #F1F3E0;
+		font-family: Poppins, sans-serif;
+		font-size: 48px;
+		font-weight: 300;
+		line-height: 78px;
+		text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+	}
+
+	.carousel-subtitle {
+		color: #F1F3E0;
+		font-family: Poppins, sans-serif;
+		font-size: 18px;
+		font-weight: 400;
+		letter-spacing: 0.06em;
+		text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+	}
+
+	.btn-group {
+		display: flex;
+		flex-direction: row;
+		gap: 16px;
+		pointer-events: all;
+		margin-top: 40px;
+	}
+
+	.btn-book {
+		margin-top: 0;
+		padding: 14px 36px;
+		background: transparent;
+		border: 2px solid #F1F3E0;
+		color: #F1F3E0;
+		font-family: Poppins, sans-serif;
+		font-size: 16px;
+		letter-spacing: 0.08em;
+		text-decoration: none;
+		text-transform: uppercase;
+		border-radius: 999px;
+		transition: background 0.3s, color 0.3s;
+	}
+
+	.btn-book:hover {
+		background: #F1F3E0;
+		color: #778873;
+	}
+
+	.btn-outline {
+		background: transparent;
+		border-color: rgba(241, 243, 224, 0.5);
+		color: rgba(241, 243, 224, 0.8);
+	}
+
+	.btn-outline:hover {
+		background: rgba(241, 243, 224, 0.15);
+		color: #F1F3E0;
+		border-color: #F1F3E0;
+	}
+
+
+</style>
+
+<script>
+	const track = document.getElementById('desktopSlidesTrack') as HTMLElement;
+	const slides = Array.from(track.children) as HTMLElement[];
+	const total = slides.length;
+	let current = 0;
+
+slides[0].classList.add('active');
+
+	function goTo(index: number) {
+		slides[current].classList.remove('active');
+		current = (index + total) % total;
+		slides[current].classList.add('active');
+	}
+
+setInterval(() => goTo(current + 1), 4000);
+</script>
+
