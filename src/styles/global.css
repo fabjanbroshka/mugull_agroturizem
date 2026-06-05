@@ -15,23 +15,11 @@
   opacity: 1;
   transform: translateY(0);
 }
-[data-reveal="left"] {
-  transform: translateX(-40px);
-}
-[data-reveal="left"].in-view {
-  transform: translateX(0);
-}
-[data-reveal="right"] {
-  transform: translateX(40px);
-}
-[data-reveal="right"].in-view {
-  transform: translateX(0);
-}
 [data-reveal="scale"] {
-  transform: scale(0.94);
+  transform: scale(0.94) translateY(20px);
 }
 [data-reveal="scale"].in-view {
-  transform: scale(1);
+  transform: scale(1) translateY(0);
 }
 
 /* Stagger: each direct child gets an increasing delay */
@@ -104,6 +92,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
