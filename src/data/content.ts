@@ -10,7 +10,7 @@ export const site = {
   phoneHref: 'tel:0696085591',
   reservationUrl: 'https://seatme.al/r/mugull-agroturizem',
   email:   'hello@mugull.al',
-  address: 'Fshat Mugull, Shkodër, Albania',
+  address: 'Peze, Tirana',
   city:    'Shkodër',
   distanceFromCity: '2 h from Tirana',
   mapsEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1957.761819515898!2d19.7026808!3d41.219157200000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135025d299b7f01d%3A0x9bb48e81ff5f35a8!2sMUGULL!5e1!3m2!1sen!2s!4v1780668555451!5m2!1sen!2s',
@@ -148,7 +148,7 @@ export const events = {
 export const location = {
   label:    'Find us',
   headline: 'Getting here',
-  address:  'Fshat Mugull, Shkodër, Albania',
+  address:  'Peze, Tirana',
   distance: '2 h from Tirana',
   directions: 'Take the road north from Shkodër toward the Accursed Mountains. Follow signs for Fshat Mugull — look for the stone gate on the left.',
   phone:    '069 608 5591',
