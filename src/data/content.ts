@@ -167,6 +167,6 @@ export const footer = {
   hours:    'Mon – Sun  ·  12:00 – 22:00',
   phone:    '069 608 5591',
   email:    'hello@mugull.al',
-  address:  'Fshat Mugull, Shkodër, Albania',
+  address:  'Peze, Tirana',
   copyright: `© ${new Date().getFullYear()} Mugull Agroturizem. All rights reserved.`,
 };
